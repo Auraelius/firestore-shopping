@@ -5,7 +5,7 @@ import {
   IonicPage,
   Loading,
   LoadingController,
-  NavController
+  NavController,
 } from 'ionic-angular';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { EmailValidator } from '../../validators/email';
@@ -14,7 +14,7 @@ import { AuthProvider } from '../../providers/auth/auth';
 @IonicPage()
 @Component({
   selector: 'page-password-reset',
-  templateUrl: 'password-reset.html'
+  templateUrl: 'password-reset.html',
 })
 export class PasswordResetPage {
   passwordResetForm: FormGroup;
@@ -29,8 +29,8 @@ export class PasswordResetPage {
     this.passwordResetForm = formBuilder.group({
       email: [
         '',
-        Validators.compose([Validators.required, EmailValidator.isValid])
-      ]
+        Validators.compose([Validators.required, EmailValidator.isValid]),
+      ],
     });
   }
 
@@ -38,8 +38,7 @@ export class PasswordResetPage {
     if (!this.passwordResetForm.valid) {
       console.log('Form not ready');
     } else {
-      let loading: Loading;
-      loading = this.loadingCtrl.create();
+      let loading: Loading = this.loadingCtrl.create();
       loading.present();
 
       const email: string = this.passwordResetForm.value.email;
@@ -54,16 +53,16 @@ export class PasswordResetPage {
               role: 'cancel',
               handler: data => {
                 this.navCtrl.pop();
-              }
-            }
-          ]
+              },
+            },
+          ],
         });
         alert.present();
       } catch (error) {
         await loading.dismiss();
         const alert: Alert = this.alertCtrl.create({
           message: error.message,
-          buttons: [{ text: 'Ok', role: 'cancel' }]
+          buttons: [{ text: 'Ok', role: 'cancel' }],
         });
         alert.present();
       }

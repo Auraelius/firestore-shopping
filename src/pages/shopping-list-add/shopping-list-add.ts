@@ -7,7 +7,7 @@ import { Grocery } from '../../models/grocery';
 @IonicPage()
 @Component({
   selector: 'page-shopping-list-add',
-  templateUrl: 'shopping-list-add.html'
+  templateUrl: 'shopping-list-add.html',
 })
 export class ShoppingListAddPage {
   groceryList: Observable<Grocery[]>;
@@ -25,7 +25,7 @@ export class ShoppingListAddPage {
     });
   }
 
-  async addGrocery(groceryId: string, teamId: string): Promise<void> {
+  addGrocery(groceryId: string, teamId: string): void {
     this.inventoryProvider.addGroceryToShoppingList(groceryId, teamId);
   }
 }

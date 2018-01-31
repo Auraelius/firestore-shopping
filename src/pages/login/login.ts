@@ -5,7 +5,7 @@ import {
   IonicPage,
   Loading,
   LoadingController,
-  NavController
+  NavController,
 } from 'ionic-angular';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { EmailValidator } from '../../validators/email';
@@ -15,7 +15,7 @@ import { TabsPage } from '../tabs/tabs';
 @IonicPage()
 @Component({
   selector: 'page-login',
-  templateUrl: 'login.html'
+  templateUrl: 'login.html',
 })
 export class LoginPage {
   loginForm: FormGroup;
@@ -29,13 +29,21 @@ export class LoginPage {
     this.loginForm = formBuilder.group({
       email: [
         '',
-        Validators.compose([Validators.required, EmailValidator.isValid])
+        Validators.compose([Validators.required, EmailValidator.isValid]),
       ],
       password: [
         '',
-        Validators.compose([Validators.required, Validators.minLength(6)])
-      ]
+        Validators.compose([Validators.required, Validators.minLength(6)]),
+      ],
     });
+  }
+
+  goToSignup(): void {
+    this.navCtrl.push('SignupPage');
+  }
+
+  goToPasswordReset(): void {
+    this.navCtrl.push('PasswordResetPage');
   }
 
   async loginUser(): Promise<any> {
@@ -55,18 +63,10 @@ export class LoginPage {
         await loading.dismiss();
         const alert: Alert = this.alertCtrl.create({
           message: error.message,
-          buttons: [{ text: 'Ok', role: 'cancel' }]
+          buttons: [{ text: 'Ok', role: 'cancel' }],
         });
         alert.present();
       }
     }
-  }
-
-  goToSignup(): void {
-    this.navCtrl.push('SignupPage');
-  }
-
-  goToPasswordReset(): void {
-    this.navCtrl.push('PasswordResetPage');
   }
 }

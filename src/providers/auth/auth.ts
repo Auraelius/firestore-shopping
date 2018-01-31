@@ -3,7 +3,7 @@ import { AngularFireAuth } from 'angularfire2/auth';
 import {
   AngularFirestore,
   AngularFirestoreCollection,
-  AngularFirestoreDocument
+  AngularFirestoreDocument,
 } from 'angularfire2/firestore';
 import firebase from 'firebase/app';
 import { userProfile } from '../../models/user-profile';
@@ -16,10 +16,20 @@ export class AuthProvider {
     public afAuth: AngularFireAuth,
     public fireStore: AngularFirestore,
     public inventoryProvider: InventoryProvider
-  ) {}
+  ) {
+    console.log('Hello AuthProvider Provider');
+  }
 
   loginUser(email: string, password: string): Promise<firebase.User> {
     return this.afAuth.auth.signInWithEmailAndPassword(email, password);
+  }
+
+  resetPassword(email: string): Promise<void> {
+    return this.afAuth.auth.sendPasswordResetEmail(email);
+  }
+
+  logoutUser(): Promise<void> {
+    return this.afAuth.auth.signOut();
   }
 
   async createAdminUser(
@@ -42,7 +52,7 @@ export class AuthProvider {
         id: adminUser.uid,
         email: email,
         teamId: teamId,
-        teamAdmin: true
+        teamAdmin: true,
       });
 
       const teamProfile: AngularFirestoreDocument<
@@ -52,12 +62,13 @@ export class AuthProvider {
       await teamProfile.set({
         id: teamId,
         teamAdmin: adminUser.uid,
-        groceryList: null
+        groceryList: null,
       });
 
       return adminUser;
     } catch (error) {
       console.error(error);
+      throw new Error();
     }
   }
 
@@ -72,17 +83,9 @@ export class AuthProvider {
     const regularUser = {
       id: id,
       email: email,
-      teamId: teamId
+      teamId: teamId,
     };
 
     return userCollection.add(regularUser);
-  }
-
-  resetPassword(email: string): Promise<void> {
-    return this.afAuth.auth.sendPasswordResetEmail(email);
-  }
-
-  logoutUser(): Promise<void> {
-    return this.afAuth.auth.signOut();
   }
 }

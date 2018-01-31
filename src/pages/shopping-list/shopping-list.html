@@ -1,11 +1,8 @@
 <ion-header>
-
-  <ion-navbar color="primary">
+  <ion-navbar>
     <ion-title>ShoppingList</ion-title>
   </ion-navbar>
-
 </ion-header>
-
 
 <ion-content padding>
   <ion-fab right bottom>
@@ -28,7 +25,8 @@
     </ion-list-header>
     <ion-item *ngFor="let grocery of groceryList | async">
       {{ grocery.name }}
-      <button ion-button item-end (click)="pickQuantity(grocery.id, grocery.name, grocery.units, grocery.teamId)">
+      <button ion-button item-end (click)="pickQuantity(grocery.id, grocery.name, grocery.units,
+        grocery.teamId)">
         <ion-icon name="add"></ion-icon>
       </button>
     </ion-item>
@@ -40,16 +38,17 @@
     </ion-list-header>
     <ion-item *ngFor="let pickedGrocery of pickedGroceryList | async">
       {{ pickedGrocery.name }}
-      <button ion-button item-end (click)="removeGrocery(pickedGrocery.id, pickedGrocery.teamId)">
+      <button ion-button item-end (click)="removeGrocery(pickedGrocery.id,
+        pickedGrocery.teamId)">
         <ion-icon name="remove"></ion-icon>
       </button>
       <span class="smaller-font" item-end>
         {{ pickedGrocery.quantityShopping }} {{ pickedGrocery.units }}
       </span>
-      <button ion-button item-end (click)="addGrocery(pickedGrocery.id, pickedGrocery.teamId)">
+      <button ion-button item-end (click)="addGrocery(pickedGrocery.id,
+        pickedGrocery.teamId)">
         <ion-icon name="add"></ion-icon>
       </button>
     </ion-item>
   </ion-list>
-
 </ion-content>

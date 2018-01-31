@@ -3,7 +3,7 @@ import {
   Alert,
   AlertController,
   NavController,
-  NavParams
+  NavParams,
 } from 'ionic-angular';
 import { InventoryProvider } from '../../providers/inventory/inventory';
 import { Observable } from 'rxjs';
@@ -11,7 +11,7 @@ import { Grocery } from '../../models/grocery';
 
 @Component({
   selector: 'page-shopping-list',
-  templateUrl: 'shopping-list.html'
+  templateUrl: 'shopping-list.html',
 })
 export class ShoppingListPage {
   groceryList: Observable<Grocery[]>;
@@ -35,6 +35,14 @@ export class ShoppingListPage {
     });
   }
 
+  addBulkGroceries(): void {
+    this.navCtrl.push('ShoppingListAddPage');
+  }
+
+  addSingleGrocery(): void {
+    this.navCtrl.push('InventoryAddPage', { inShoppingList: true });
+  }
+
   pickQuantity(
     groceryId: string,
     name: string,
@@ -43,19 +51,13 @@ export class ShoppingListPage {
   ): void {
     const prompt: Alert = this.alertCtrl.create({
       message: `How many ${units} of ${name} are you picking up?`,
-      inputs: [
-        {
-          name: 'quantity',
-          placeholder: `1`,
-          type: 'number'
-        }
-      ],
+      inputs: [{ name: 'quantity', placeholder: `1`, type: 'number' }],
       buttons: [
         {
           text: 'Cancel',
           handler: data => {
             console.log('Cancel clicked');
-          }
+          },
         },
         {
           text: 'Add',
@@ -66,19 +68,11 @@ export class ShoppingListPage {
               quantityShopping,
               teamId
             );
-          }
-        }
-      ]
+          },
+        },
+      ],
     });
     prompt.present();
-  }
-
-  addBulkGroceries(): void {
-    this.navCtrl.push('ShoppingListAddPage');
-  }
-
-  addSingleGrocery(): void {
-    this.navCtrl.push('InventoryAddPage', { inShoppingList: true });
   }
 
   addGrocery(groceryId: string, teamId: string): void {
@@ -88,15 +82,15 @@ export class ShoppingListPage {
         {
           name: 'quantity',
           placeholder: '0',
-          type: 'number'
-        }
+          type: 'number',
+        },
       ],
       buttons: [
         {
           text: 'Cancel',
           handler: data => {
             console.log('Cancel clicked');
-          }
+          },
         },
         {
           text: 'Add',
@@ -107,9 +101,9 @@ export class ShoppingListPage {
               quantityShopping,
               teamId
             );
-          }
-        }
-      ]
+          },
+        },
+      ],
     });
     prompt.present();
   }
@@ -121,15 +115,15 @@ export class ShoppingListPage {
         {
           name: 'quantity',
           placeholder: '0',
-          type: 'number'
-        }
+          type: 'number',
+        },
       ],
       buttons: [
         {
           text: 'Cancel',
           handler: data => {
             console.log('Cancel clicked');
-          }
+          },
         },
         {
           text: 'Take Out',
@@ -140,9 +134,9 @@ export class ShoppingListPage {
               quantityShopping,
               teamId
             );
-          }
-        }
-      ]
+          },
+        },
+      ],
     });
     prompt.present();
   }

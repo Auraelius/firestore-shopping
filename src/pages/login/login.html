@@ -1,11 +1,8 @@
 <ion-header>
-
-  <ion-navbar color="primary">
-    <ion-title>Log In</ion-title>
+  <ion-navbar>
+    <ion-title>Login</ion-title>
   </ion-navbar>
-
 </ion-header>
-
 
 <ion-content padding class="auth-page">
   <img src="http://placehold.it/300x100" />
@@ -15,7 +12,8 @@
       <ion-input formControlName="email" type="email" placeholder="Your email address">
       </ion-input>
     </ion-item>
-    <ion-item class="error-message" *ngIf="!loginForm.controls.email.valid && loginForm.controls.email.touched">
+    <ion-item class="error-message" *ngIf="!loginForm.controls.email.valid &&
+        loginForm.controls.email.touched">
       <p>Please enter a valid email address.</p>
     </ion-item>
 
@@ -24,7 +22,8 @@
       <ion-input formControlName="password" type="password" placeholder="Your password">
       </ion-input>
     </ion-item>
-    <ion-item class="error-message" *ngIf="!loginForm.controls.password.valid  && loginForm.controls.password.touched">
+    <ion-item class="error-message" *ngIf="!loginForm.controls.password.valid &&
+        loginForm.controls.password.touched">
       <p>Your password needs more than 6 characters.</p>
     </ion-item>
 
@@ -40,5 +39,4 @@
   <button ion-button block clear (click)="goToPasswordReset()">
     I forgot my password :(
   </button>
-
 </ion-content>

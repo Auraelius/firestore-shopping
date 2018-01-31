@@ -1,7 +1,7 @@
 <ion-header>
 
-  <ion-navbar color="primary">
-    <ion-title>Add User</ion-title>
+  <ion-navbar>
+    <ion-title>AddUser</ion-title>
   </ion-navbar>
 
 </ion-header>
@@ -14,7 +14,8 @@
       <ion-input formControlName="email" type="email" placeholder="Email address">
       </ion-input>
     </ion-item>
-    <ion-item class="error-message" *ngIf="!createUserForm.controls.email.valid && createUserForm.controls.email.touched">
+    <ion-item class="error-message" *ngIf="!createUserForm.controls.email.valid &&
+      createUserForm.controls.email.touched">
       <p>Please enter a valid email address.</p>
     </ion-item>
 

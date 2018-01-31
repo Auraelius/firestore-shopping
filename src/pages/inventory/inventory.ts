@@ -2,15 +2,14 @@ import { Component } from '@angular/core';
 import { Alert, AlertController, NavController } from 'ionic-angular';
 import { InventoryProvider } from '../../providers/inventory/inventory';
 import { Grocery } from '../../models/grocery';
-import { Observable } from 'rxjs';
+import { Observable } from 'rxjs/Observable';
 
 @Component({
   selector: 'page-inventory',
-  templateUrl: 'inventory.html'
+  templateUrl: 'inventory.html',
 })
 export class InventoryPage {
   groceryList: Observable<Grocery[]>;
-
   constructor(
     public navCtrl: NavController,
     public inventoryProvider: InventoryProvider,
@@ -40,15 +39,15 @@ export class InventoryPage {
         {
           name: 'quantity',
           placeholder: '0',
-          type: 'number'
-        }
+          type: 'number',
+        },
       ],
       buttons: [
         {
           text: 'Cancel',
           handler: data => {
             console.log('Cancel clicked');
-          }
+          },
         },
         {
           text: 'Add',
@@ -59,9 +58,9 @@ export class InventoryPage {
               quantity,
               teamId
             );
-          }
-        }
-      ]
+          },
+        },
+      ],
     });
     prompt.present();
   }
@@ -73,15 +72,15 @@ export class InventoryPage {
         {
           name: 'quantity',
           placeholder: '0',
-          type: 'number'
-        }
+          type: 'number',
+        },
       ],
       buttons: [
         {
           text: 'Cancel',
           handler: data => {
             console.log('Cancel clicked');
-          }
+          },
         },
         {
           text: 'Take Out',
@@ -92,9 +91,9 @@ export class InventoryPage {
               quantity,
               teamId
             );
-          }
-        }
-      ]
+          },
+        },
+      ],
     });
     prompt.present();
   }
